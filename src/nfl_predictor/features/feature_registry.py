@@ -91,3 +91,25 @@ def build_all_features(
         result = result.merge(features, on="game_id", how="left")
 
     return result
+
+
+def build_features_v0(games_base: pd.DataFrame) -> pd.DataFrame:
+    """Build the V0 feature matrix with all V0 feature groups.
+
+    This is a convenience function that builds all V0 baseline features:
+    - base_game_v0: Targets and calendar features
+    - team_rolling_v0: 3-game rolling statistics
+    - elo_v0: Elo ratings
+
+    Args:
+        games_base: DataFrame with base game information
+
+    Returns:
+        DataFrame with game_id, context columns, and all V0 features
+    """
+    return build_all_features(
+        games_base=games_base,
+        aux_tables={},
+        feature_group_names=["base_game_v0", "team_rolling_v0", "elo_v0"],
+        config={},
+    )
