@@ -1,0 +1,55 @@
+# Hydra root configuration for NFL Predictor
+
+defaults:
+  - _self_
+
+# Project metadata
+project:
+  name: nfl-predictor
+  version: "0.1.0"
+
+# Data paths
+data:
+  raw_dir: data/raw
+  interim_dir: data/interim
+  processed_dir: data/processed
+  artifacts_dir: data/artifacts
+
+# Model paths
+models:
+  winner_dir: models/winner
+  score_dir: models/score
+  ensembles_dir: models/ensembles
+
+# Feature engineering
+features:
+  groups: []  # Feature groups to include (e.g., ["base", "rolling", "elo"])
+  config: {}  # Group-specific configurations
+
+# Training configuration
+training:
+  # Season splits
+  train_seasons: [2018, 2019, 2020, 2021]
+  val_seasons: [2022]
+  test_seasons: [2023, 2024]
+
+  # Random seed for reproducibility
+  random_seed: 42
+
+  # Model type
+  model_type: baseline  # baseline, gbdt, nn, ensemble
+
+# Experiment tracking
+wandb:
+  project: nfl-predictor
+  entity: null  # Set to your W&B username/org
+  enabled: false
+  run_name: null  # Auto-generated if not specified
+
+# Hydra run configuration
+hydra:
+  run:
+    dir: outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  sweep:
+    dir: multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${hydra.job.num}
