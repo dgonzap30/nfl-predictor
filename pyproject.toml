@@ -22,6 +22,7 @@ dependencies = [
     "wandb>=0.15",
     "pyarrow>=14.0",
     "pytest>=7.0",
+    "nflreadpy>=0.1.0",
 ]
 
 [project.optional-dependencies]
