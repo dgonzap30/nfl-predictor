@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "nfl-predictor"
 version = "0.1.0"
-description = "A production-style NFL forecasting engine"
+description = "NFL forecasting research with calibrated-probability goals"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
